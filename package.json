@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/mattBedell/Asteroid-Tracker/issues"
   },
-  "homepage": "https://github.com/mattBedell/Asteroid-Tracker#readme"
+  "homepage": "https://github.com/mattBedell/Asteroid-Tracker#readme",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
+  }
 }
