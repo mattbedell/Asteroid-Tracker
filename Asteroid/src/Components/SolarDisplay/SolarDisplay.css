@@ -1,0 +1,12 @@
+.SolarDisplay {
+  position: relative;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+}
+img {
+  position: absolute;
+}
