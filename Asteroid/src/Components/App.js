@@ -6,14 +6,14 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      sizeScale: .03,
+      distanceScale: .03,
     }
   }
   render() {
     return (
       <SolarDisplay
-        sizeScale={this.state.sizeScale}
-        distanceScale={this.state.sizeScale / 2}
+        sizeScale={this.state.distanceScale * 8}
+        distanceScale={this.state.distanceScale}
       />
     );
   }

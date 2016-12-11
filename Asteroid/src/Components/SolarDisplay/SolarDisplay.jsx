@@ -10,25 +10,41 @@ class SolarDisplay extends Component {
     this.moonDiameter = 2200
     this.earthMoonDistance = 230000
     this.earthCenter = 0;
-    this.moonCenter = this.moonDiameter/2 * props.sizeScale * -1
+    this.moonCenter = 0;
   }
   earthUpdate() {
-    this.earthCenter = this.earthDiameter/2 * this.props.sizeScale
+    let earthSize = 0;
+    if(this.props.sizeScale >= 0.0072) {
+      earthSize = this.earthDiameter * this.props.sizeScale
+      this.earthCenter = this.earthDiameter/2 * this.props.sizeScale
+    } else {
+      earthSize = this.earthDiameter * 0.0072
+      this.earthCenter = this.earthDiameter/2 * 0.0072
+    }
     return {
-      width: this.earthDiameter * this.props.sizeScale,
-      height: this.earthDiameter * this.props.sizeScale,
+      width: earthSize,
+      height: earthSize,
       left: this.earthCenter * -1
     }
   }
   moonUpdate() {
+    let moonSize = 0;
+    if(this.props.sizeScale >= 0.0072) {
+      this.moonCenter = this.moonDiameter/2 * this.props.sizeScale * -1
+      moonSize = this.moonDiameter * this.props.sizeScale
+    } else {
+      this.moonCenter = this.moonDiameter/2 * 0.0072 * -1
+      moonSize = this.moonDiameter * 0.0072
+    }
     this.moonCenter += this.earthMoonDistance * this.props.distanceScale
     return {
-      width: this.moonDiameter * this.props.sizeScale,
-      height: this.moonDiameter * this.props.sizeScale,
+      width: moonSize,
+      height: moonSize,
       left: this.moonCenter
     }
   }
   render() {
+    console.log(this.props.sizeScale);
     return (
       <div className="SolarDisplay">
         <img className="Earth" src={EarthImg} alt="Earth" style={this.earthUpdate()}></img>
