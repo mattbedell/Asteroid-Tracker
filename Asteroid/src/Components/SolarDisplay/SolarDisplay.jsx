@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './SolarDisplay.css';
+import AsteroidDisplay from './../AsteroidDisplay/AsteroidDisplay'
 import EarthImg from "./../../../public/assets/Earth.png";
 import MoonImg from "./../../../public/assets/Moon.png"
+
 
 class SolarDisplay extends Component {
   constructor(props) {
@@ -9,9 +11,11 @@ class SolarDisplay extends Component {
     this.earthDiameter = 8000
     this.moonDiameter = 2200
     this.earthMoonDistance = 230000
+    this.earthMarsDistance = 139808518
     this.earthCenter = 0;
     this.moonCenter = 0;
   }
+  // ------------------- SCALING ---------------------
   earthUpdate() {
     let earthSize = 0;
     if(this.props.sizeScale >= 0.0072) {
@@ -43,13 +47,26 @@ class SolarDisplay extends Component {
       left: this.moonCenter
     }
   }
+  // ------------------- SCALING ---------------------
+
+  generateAsteroids() {
+    return(
+    this.props.data.map((asteroid, i) =>
+    <AsteroidDisplay
+      key={`asteroid${i}`}
+      asteroid={asteroid}
+      sizeScale={this.props.sizeScale}
+      distanceScale={this.props.distanceScale}
+    />
+  )
+)
+  }
   render() {
-    console.log(this.props.sizeScale);
     return (
       <div className="SolarDisplay">
         <img className="Earth" src={EarthImg} alt="Earth" style={this.earthUpdate()}></img>
         <img className="Moon" src={MoonImg} alt="Moon" style={this.moonUpdate()}></img>
-
+        {this.generateAsteroids()}
       </div>
     );
   }

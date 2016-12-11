@@ -1,0 +1,9 @@
+.todayItem {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(233,233,231);
+}
+.info {
+  width: 30%;
+}

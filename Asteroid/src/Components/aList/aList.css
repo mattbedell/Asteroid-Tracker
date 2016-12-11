@@ -1,0 +1,10 @@
+.listHeaders {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(227,227,227);
+}
+.header {
+
+  width: 30%;
+}
