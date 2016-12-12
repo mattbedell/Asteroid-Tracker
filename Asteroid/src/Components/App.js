@@ -9,7 +9,7 @@ class App extends Component {
     super()
     this.resetScale = .009;
     this.state = {
-      distanceScale: .009,
+      distanceScale: .02,
       today: []
     }
   }
