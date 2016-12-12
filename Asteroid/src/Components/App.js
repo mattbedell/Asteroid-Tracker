@@ -41,7 +41,6 @@ class App extends Component {
             distanceScale: this.state.distanceScale - scaleFactor
           })
         }
-        console.log(asteroidDist);
         frameId = window.requestAnimationFrame(animateFrames)
       } else {
         cancelAnimationFrame(frameId);

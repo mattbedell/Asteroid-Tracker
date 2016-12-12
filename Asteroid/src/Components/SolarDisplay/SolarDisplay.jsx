@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './SolarDisplay.css';
 import AsteroidDisplay from './../AsteroidDisplay/AsteroidDisplay'
+//import DistanceDisplay from './../DistanceDisplay/DistanceDisplay'
 import EarthImg from "./../../../public/assets/Earth.png";
 import MoonImg from "./../../../public/assets/Moon.png"
 import MarsImg from "./../../../public/assets/Mars.png"
@@ -61,6 +62,20 @@ class SolarDisplay extends Component {
   )
 )
   }
+  // adjustDistance() {
+  //   let width = 150;
+  //   let halfMark = window.innerWidth/2 - (width/2);
+  //   return {
+  //     left: halfMark,
+  //     width: width,
+  //     height: width/2,
+  //   }
+  // }
+  calcMiles() {
+    let halfMark = window.innerWidth/2;
+    let miles = Math.floor(halfMark / this.props.distanceScale)
+    return miles
+  }
   render() {
     return (
       <div className="SolarDisplay">
@@ -68,6 +83,10 @@ class SolarDisplay extends Component {
         <img className="Moon" src={MoonImg} alt="Moon" style={this.moonUpdate()}></img>
         <img className="Mars" src={MarsImg} alt="mars" style={this.marsUpdate()}></img>
         {this.generateAsteroids()}
+        <div className="distanceDisplay" style={{left: window.innerWidth/2 - 100}}>
+          <div className="pointer"></div>
+          <div className="miles">{this.calcMiles()} miles</div>
+        </div>
       </div>
     );
   }

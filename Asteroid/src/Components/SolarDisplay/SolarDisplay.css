@@ -7,6 +7,26 @@
   height: 50vh;
   overflow: hidden;
 }
+.distanceDisplay {
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 200px;
+  height: 80px;
+  position: relative;
+}
+.pointer {
+  border: 1px solid red;
+  height: 60%;
+  width: 0px;
+}
+.miles {
+  width: 100%;
+  height: 20%;
+  color: #FAFAFA;
+  text-align: center;
+}
 img {
   position: absolute;
 }
