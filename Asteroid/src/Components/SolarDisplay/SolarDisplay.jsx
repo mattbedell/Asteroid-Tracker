@@ -62,15 +62,6 @@ class SolarDisplay extends Component {
   )
 )
   }
-  // adjustDistance() {
-  //   let width = 150;
-  //   let halfMark = window.innerWidth/2 - (width/2);
-  //   return {
-  //     left: halfMark,
-  //     width: width,
-  //     height: width/2,
-  //   }
-  // }
   calcMiles() {
     let halfMark = window.innerWidth/2;
     let miles = Math.floor(halfMark / this.props.distanceScale)
