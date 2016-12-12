@@ -3,6 +3,7 @@ import './SolarDisplay.css';
 import AsteroidDisplay from './../AsteroidDisplay/AsteroidDisplay'
 import EarthImg from "./../../../public/assets/Earth.png";
 import MoonImg from "./../../../public/assets/Moon.png"
+import MarsImg from "./../../../public/assets/Mars.png"
 
 
 class SolarDisplay extends Component {
@@ -10,6 +11,7 @@ class SolarDisplay extends Component {
     super()
     this.earthDiameter = 8000
     this.moonDiameter = 2200
+    this.marsDiameter = 4212
     this.earthMoonDistance = 230000
     this.earthMarsDistance = 139808518
     this.earthCenter = 0;
@@ -17,14 +19,8 @@ class SolarDisplay extends Component {
   }
   // ------------------- SCALING ---------------------
   earthUpdate() {
-    let earthSize = 0;
-    if(this.props.sizeScale >= 0.0072) {
-      earthSize = this.earthDiameter * this.props.sizeScale
+      let earthSize = this.earthDiameter * this.props.sizeScale
       this.earthCenter = this.earthDiameter/2 * this.props.sizeScale
-    } else {
-      earthSize = this.earthDiameter * 0.0072
-      this.earthCenter = this.earthDiameter/2 * 0.0072
-    }
     return {
       width: earthSize,
       height: earthSize,
@@ -32,19 +28,23 @@ class SolarDisplay extends Component {
     }
   }
   moonUpdate() {
-    let moonSize = 0;
-    if(this.props.sizeScale >= 0.0072) {
-      this.moonCenter = this.moonDiameter/2 * this.props.sizeScale * -1
-      moonSize = this.moonDiameter * this.props.sizeScale
-    } else {
-      this.moonCenter = this.moonDiameter/2 * 0.0072 * -1
-      moonSize = this.moonDiameter * 0.0072
-    }
+    this.moonCenter = this.moonDiameter/2 * this.props.sizeScale * -1
+    let moonSize = this.moonDiameter * this.props.sizeScale
     this.moonCenter += this.earthMoonDistance * this.props.distanceScale
     return {
       width: moonSize,
       height: moonSize,
       left: this.moonCenter
+    }
+  }
+  marsUpdate() {
+    this.marsCenter = this.marsDiameter/2 * this.props.sizeScale * -1
+    let marsSize = this.marsDiameter * this.props.sizeScale
+    this.marsCenter += this.earthMarsDistance * this.props.distanceScale
+    return {
+      width: marsSize,
+      height: marsSize,
+      left: this.marsCenter
     }
   }
   // ------------------- SCALING ---------------------
@@ -66,6 +66,7 @@ class SolarDisplay extends Component {
       <div className="SolarDisplay">
         <img className="Earth" src={EarthImg} alt="Earth" style={this.earthUpdate()}></img>
         <img className="Moon" src={MoonImg} alt="Moon" style={this.moonUpdate()}></img>
+        <img className="Mars" src={MarsImg} alt="mars" style={this.marsUpdate()}></img>
         {this.generateAsteroids()}
       </div>
     );
