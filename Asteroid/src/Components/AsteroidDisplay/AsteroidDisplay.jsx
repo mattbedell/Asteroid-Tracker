@@ -8,11 +8,38 @@ function alterAsteroid(props) {
   return {
     width: asteroidSize * 100,
     height: asteroidSize * 100,
-    left: asteroidDistance * props.distanceScale
+    left: asteroidDistance * props.distanceScale - (asteroidSize/2 * 100)
+  }
+}
+function updateDisplay(props) {
+  const asteroidDistance = props.asteroid.close_approach_data[0].miss_distance.miles;
+  return {
+    left: asteroidDistance * props.distanceScale - (120/2),
+    top: 95
+  }
+
+}
+function generateOverlay(props) {
+  let hazard = `${props.asteroid.is_potentially_hazardous_asteroid}`
+  if(props.selected === props.asteroid.name) {
+    return (
+      <div className="overlay" style={updateDisplay(props)}>
+        <div className="infoDisplay">
+        <p>Velocity: <span>{Math.floor(props.asteroid.close_approach_data[0].relative_velocity.miles_per_hour)} mph </span></p>
+        <p>Distance: <span>{Math.floor(props.asteroid.close_approach_data[0].miss_distance.lunar)} LD</span></p>
+        <p>Hazard: <span>{hazard}</span></p>
+        </div>
+        <div className="lineContainer">
+          <div className="line"></div>
+        </div>
+        <div className="circle"></div>
+      </div>
+    )
   }
 }
 const AsteroidDisplay = props => (
   <div className="AsteroidDisplay">
+    {generateOverlay(props)}
     <img src={AsteroidImg} alt="asteroid" style={alterAsteroid(props)}></img>
   </div>
 );

@@ -95,6 +95,7 @@ class App extends Component {
     return (
       <div className="bodyContainer">
         <SolarDisplay
+          selected={this.state.selected}
           sizeScale={this.state.distanceScale}
           distanceScale={this.state.distanceScale}
           data={this.state.today}
