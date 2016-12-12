@@ -22,8 +22,11 @@ class App extends Component {
     })
   }
   handleAsteroidClick(asteroidDist, selected) {
+    if(this.state.frameId) {
+      cancelAnimationFrame(this.state.frameId);
+    }
     this.setState({
-      selected: selected
+      selected
     })
     var frameId;
     let scaleFactor = .00005
@@ -43,8 +46,14 @@ class App extends Component {
           })
         }
         frameId = window.requestAnimationFrame(animateFramesOut)
+        this.setState({
+          frameId
+        })
       } else {
         cancelAnimationFrame(frameId);
+        this.setState({
+          frameId: undefined
+        })
       }
     }
     const animateFramesIn = (time) => {
@@ -62,8 +71,14 @@ class App extends Component {
           })
         }
         frameId = window.requestAnimationFrame(animateFramesIn)
+        this.setState({
+          frameId
+        })
       } else {
         cancelAnimationFrame(frameId);
+        this.setState({
+          frameId: undefined
+        })
       }
     }
     if(asteroidDist * this.state.distanceScale > window.innerWidth/2) {
