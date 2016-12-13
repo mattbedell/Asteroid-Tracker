@@ -29,6 +29,12 @@ function generateOverlay(props) {
     )
   }
 }
+function updateDisplay(props) {
+  const asteroidDistance = props.asteroid.close_approach_data[0].miss_distance.miles;
+  return {
+    left: asteroidDistance * props.distanceScale - (120/2),
+    top: 95
+  }
 const AsteroidDisplay = props => (
   <div className="AsteroidDisplay">
     <img src={AsteroidImg} alt="asteroid" style={alterAsteroid(props)}></img>
