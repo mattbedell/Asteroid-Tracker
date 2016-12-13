@@ -58,6 +58,7 @@ class SolarDisplay extends Component {
       asteroid={asteroid}
       sizeScale={this.props.sizeScale}
       distanceScale={this.props.distanceScale}
+      selected={this.props.selected}
     />
   )
 )

@@ -100,6 +100,7 @@ class App extends Component {
           sizeScale={this.state.distanceScale}
           distanceScale={this.state.distanceScale}
           data={this.state.today}
+          selected={this.state.selected}
         />
         <AList
           data={this.state.today}
