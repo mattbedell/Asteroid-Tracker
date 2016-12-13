@@ -5,6 +5,7 @@ import AsteroidDisplay from './../AsteroidDisplay/AsteroidDisplay'
 import EarthImg from "./../../../public/assets/Earth.png";
 import MoonImg from "./../../../public/assets/Moon.png"
 import MarsImg from "./../../../public/assets/Mars.png"
+import ZoomImg from "./../../../public/assets/"
 
 
 class SolarDisplay extends Component {
@@ -78,6 +79,11 @@ class SolarDisplay extends Component {
           <div className="pointer"></div>
           <div className="miles">{this.calcMiles()} miles</div>
         </div>
+        <div className="zoomContainer"
+          <img src={ZoomImg} alt="zoomImg"
+            onClick={() => this.props.handleZoomInClick()}
+            ></img>
+          ></div>
       </div>
     );
   }
