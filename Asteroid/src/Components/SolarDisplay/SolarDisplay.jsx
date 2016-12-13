@@ -5,6 +5,7 @@ import AsteroidDisplay from './../AsteroidDisplay/AsteroidDisplay'
 import EarthImg from "./../../../public/assets/Earth.png";
 import MoonImg from "./../../../public/assets/Moon.png"
 import MarsImg from "./../../../public/assets/Mars.png"
+import ZoomImg from "./../../../public/assets/zoomIn.png"
 
 
 class SolarDisplay extends Component {
