@@ -7,6 +7,8 @@ import ajaxAdapter from './../helpers/AJAXAdapter'
 class App extends Component {
   constructor() {
     super()
+    this.zoomDone = false;
+    this.timeoutId = 0;
     this.resetScale = .009;
     this.state = {
       distanceScale: .02,
@@ -22,56 +24,71 @@ class App extends Component {
     })
   }
   handleAsteroidClick(asteroidDist, selected) {
+    this.zoomDone = true;
+    window.clearTimeout(this.timeoutId)
     this.setState({
       selected: selected
     })
-    var frameId;
-    let scaleFactor = .00005
-    let calcNewDist = asteroidDist;
+    let calcNewDist = asteroidDist * this.state.distanceScale;
     const animateFramesOut = (time) => {
+      console.log('run');
       calcNewDist = asteroidDist * this.state.distanceScale
-      if(calcNewDist >= window.innerWidth/2) {
-        if(calcNewDist <= window.innerWidth * 3) {
-          scaleFactor = .000001
+      if(asteroidDist > 225000*3) {
+        if(calcNewDist >= window.innerWidth * 3) {
           this.setState({
-            distanceScale: this.state.distanceScale - scaleFactor
+            distanceScale: this.state.distanceScale - .00005
           })
+          calcNewDist = asteroidDist * this.state.distanceScale;
+        } else if(calcNewDist >= window.innerWidth/2){
+          this.setState({
+            distanceScale: this.state.distanceScale - .000001
+          })
+          calcNewDist = asteroidDist * this.state.distanceScale;
         } else {
-          scaleFactor = .00005
-          this.setState({
-            distanceScale: this.state.distanceScale - scaleFactor
-          })
+          this.zoomDone = true;
         }
-        frameId = window.requestAnimationFrame(animateFramesOut)
+      } else if(calcNewDist > window.innerWidth/2){
+        this.setState({
+          distanceScale: this.state.distanceScale - .00005
+        })
+        calcNewDist = asteroidDist * this.state.distanceScale;
       } else {
-        cancelAnimationFrame(frameId);
+        this.zoomDone = true;
+      }
+      if(!this.zoomDone) {
+        requestAnimationFrame(animateFramesOut)
       }
     }
     const animateFramesIn = (time) => {
-      calcNewDist = asteroidDist * this.state.distanceScale
-      if(calcNewDist <= window.innerWidth/2) {
-        if(calcNewDist >= window.innerWidth / 3) {
-          scaleFactor = .000001
-          this.setState({
-            distanceScale: this.state.distanceScale + scaleFactor
-          })
-        } else {
-          scaleFactor = .00005
-          this.setState({
-            distanceScale: this.state.distanceScale + scaleFactor
-          })
-        }
-        frameId = window.requestAnimationFrame(animateFramesIn)
+      calcNewDist = asteroidDist * this.state.distanceScale;
+      if(calcNewDist < window.innerWidth / 3) {
+        this.setState({
+          distanceScale: this.state.distanceScale + .00005
+        })
+        calcNewDist = asteroidDist * this.state.distanceScale;
+      } else if(calcNewDist < window.innerWidth / 2){
+        this.setState({
+          distanceScale: this.state.distanceScale + .000001
+        })
+        calcNewDist = asteroidDist * this.state.distanceScale;
       } else {
-        cancelAnimationFrame(frameId);
+        this.zoomDone = true;
+      }
+      if(!this.zoomDone) {
+        requestAnimationFrame(animateFramesIn)
       }
     }
-    if(asteroidDist * this.state.distanceScale > window.innerWidth/2) {
-      frameId = window.requestAnimationFrame(animateFramesOut)
-    } else {
-      console.log('request zoom out');
-      frameId = window.requestAnimationFrame(animateFramesIn)
+    const pauseResetZoom = () => {
+      this.timeoutId = window.setTimeout(() => {
+        this.zoomDone = false;
+        if(calcNewDist > window.innerWidth/2) {
+          requestAnimationFrame(animateFramesOut)
+        } else {
+          requestAnimationFrame(animateFramesIn)
+        }
+      }, 70)
     }
+    pauseResetZoom()
   }
   componentDidMount() {
     this.getToday()
