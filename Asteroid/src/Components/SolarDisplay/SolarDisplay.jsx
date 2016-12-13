@@ -79,6 +79,12 @@ class SolarDisplay extends Component {
           <div className="pointer"></div>
           <div className="miles">{this.calcMiles()} miles</div>
         </div>
+        <div className="zoomContainer">
+          <img src={ZoomImg} alt="zoomImg" style={{left: window.innerWidth - 45, top: 320}}
+            onClick={() => this.props.handleZoomInClick()}
+            >
+          </img>
+        </div>
       </div>
     );
   }
