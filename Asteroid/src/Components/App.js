@@ -21,23 +21,23 @@ class App extends Component {
       })
     })
   }
-  handleResetZoom() {
-    console.log('reset');
-    let frameId;
-    const zoomIn = (time) => {
-      if(Math.round(this.state.distanceScale * 100) / 100 <= this.resetScale) {
-        this.setState({
-          distanceScale: this.state.distanceScale + this.resetScale
-        })
-        frameId = window.requestAnimationFrame(zoomIn)
-      }
-    }
-    if(frameId) {
-      cancelAnimationFrame(frameId)
-    } else {
-      frameId = requestAnimationFrame(zoomIn)
-    }
-  }
+  // handleResetZoom() {
+  //   console.log('reset');
+  //   let frameId;
+  //   const zoomIn = (time) => {
+  //     if(Math.round(this.state.distanceScale * 100) / 100 <= this.resetScale) {
+  //       this.setState({
+  //         distanceScale: this.state.distanceScale + this.resetScale
+  //       })
+  //       frameId = window.requestAnimationFrame(zoomIn)
+  //     }
+  //   }
+  //   if(frameId) {
+  //     cancelAnimationFrame(frameId)
+  //   } else {
+  //     frameId = requestAnimationFrame(zoomIn)
+  //   }
+  // }
   handleAsteroidClick(asteroidDist, selected) {
     if(this.state.frameId) {
       cancelAnimationFrame(this.state.frameId);
