@@ -7,7 +7,7 @@ import ajaxAdapter from './../helpers/AJAXAdapter'
 class App extends Component {
   constructor() {
     super()
-    this.resetScale = .009;
+    this.resetScale = .02;
     this.state = {
       distanceScale: .02,
       today: []
@@ -20,6 +20,23 @@ class App extends Component {
         today: data
       })
     })
+  }
+  handleResetZoom() {
+    console.log('reset');
+    let frameId;
+    const zoomIn = (time) => {
+      if(Math.round(this.state.distanceScale * 100) / 100 <= this.resetScale) {
+        this.setState({
+          distanceScale: this.state.distanceScale + this.resetScale
+        })
+        frameId = window.requestAnimationFrame(zoomIn)
+      }
+    }
+    if(frameId) {
+      cancelAnimationFrame(frameId)
+    } else {
+      frameId = requestAnimationFrame(zoomIn)
+    }
   }
   handleAsteroidClick(asteroidDist, selected) {
     if(this.state.frameId) {
@@ -99,6 +116,7 @@ class App extends Component {
           sizeScale={this.state.distanceScale}
           distanceScale={this.state.distanceScale}
           data={this.state.today}
+          // resetZoom={() => this.handleResetZoom()}
         />
         <AList
           data={this.state.today}
