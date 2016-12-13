@@ -9,7 +9,7 @@ class App extends Component {
     super()
     this.zoomDone = false;
     this.timeoutId = 0;
-    this.resetScale = .009;
+    this.resetScale = .02;
     this.state = {
       distanceScale: .02,
       today: []
@@ -90,6 +90,26 @@ class App extends Component {
     }
     pauseResetZoom()
   }
+  handleZoomInClick() {
+    this.zoomDone = true;
+    const animateZoomOut = () => {
+      console.log(Math.round(this.state.distanceScale * 1000)/ 1000);
+      if(Math.round(this.state.distanceScale * 1000) / 1000 < this.resetScale) {
+        this.setState({
+          distanceScale: this.state.distanceScale + .00005
+        })
+        if(!this.zoomDone) {
+          requestAnimationFrame(animateZoomOut)
+        }
+      } else {
+        this.zoomDone = true;
+      }
+    }
+    window.setTimeout(() => {
+      this.zoomDone = false;
+      requestAnimationFrame(animateZoomOut)
+    }, 70)
+  }
   componentDidMount() {
     this.getToday()
   }
@@ -101,6 +121,7 @@ class App extends Component {
           distanceScale={this.state.distanceScale}
           data={this.state.today}
           selected={this.state.selected}
+          handleZoomInClick={() => this.handleZoomInClick()}
         />
         <AList
           data={this.state.today}

@@ -8,7 +8,7 @@ function alterAsteroid(props) {
   return {
     width: asteroidSize * 100,
     height: asteroidSize * 100,
-    left: asteroidDistance * props.distanceScale
+    left: (asteroidDistance * props.distanceScale) - ((asteroidSize * 100) / 2)
   }
 }
 function updateDisplay(props) {
