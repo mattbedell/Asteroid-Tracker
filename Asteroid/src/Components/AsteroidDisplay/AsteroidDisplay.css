@@ -1,0 +1,33 @@
+
+.overlay {
+  position: absolute;
+  height: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 120px;
+}
+.circle {
+  width: 20px;
+  height: 20px;
+  align-self: flex-end;
+}
+.lineContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.line {
+  width: 0px;
+  height: 100%;
+  border: 1px solid red;
+}
+.infoDisplay {
+  width: 100%;
+  color: #FAFAFA;
+  font-size: .7em;
+  border: 1px solid red;
+}
+p {
+  margin: 0;
+}
