@@ -31,7 +31,6 @@ class App extends Component {
     })
     let calcNewDist = asteroidDist * this.state.distanceScale;
     const animateFramesOut = (time) => {
-      console.log('run');
       calcNewDist = asteroidDist * this.state.distanceScale
       if(asteroidDist > 225000*3) {
         if(calcNewDist >= window.innerWidth * 3) {
@@ -61,16 +60,18 @@ class App extends Component {
     }
     const animateFramesIn = (time) => {
       calcNewDist = asteroidDist * this.state.distanceScale;
-      if(calcNewDist < window.innerWidth / 3) {
-        this.setState({
-          distanceScale: this.state.distanceScale + .00005
-        })
-        calcNewDist = asteroidDist * this.state.distanceScale;
-      } else if(calcNewDist < window.innerWidth / 2){
-        this.setState({
-          distanceScale: this.state.distanceScale + .000001
-        })
-        calcNewDist = asteroidDist * this.state.distanceScale;
+      if(calcNewDist < window.innerWidth / 2) {
+        if(calcNewDist > window.innerWidth / 10) {
+          this.setState({
+            distanceScale: this.state.distanceScale + .000001
+          })
+          calcNewDist = asteroidDist * this.state.distanceScale;
+        } else {
+          this.setState({
+            distanceScale: this.state.distanceScale + .00005
+          })
+          calcNewDist = asteroidDist * this.state.distanceScale;
+        }
       } else {
         this.zoomDone = true;
       }
