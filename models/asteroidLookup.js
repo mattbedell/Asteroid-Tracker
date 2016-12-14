@@ -10,9 +10,19 @@ function getAsteroidsByMonth(req, res, next) {
       next()
     })
     .catch((err) => {
-      console.log(`---> Error in models -> getAsteroidsByMonth(): ${err}`);
+      console.log(`---> Error in models -> asteroidLookup -> getAsteroidsByMonth(): ${err}`);
     })
 }
+function getAllAsteroids(req, res, next) {
+  db.many(`SELECT * FROM asteroids;`)
+  .then((data) => {
+    res.data = data
+  })
+  .catch((err) => {
+    console.log(`---> Error in models -> asteroidLookup -> getAllAsteroids(): ${err}`);
+  })
+}
 module.exports = {
-  getAsteroidsByMonth
+  getAsteroidsByMonth,
+  getAllAsteroids
 }

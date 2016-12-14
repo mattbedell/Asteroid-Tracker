@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { getAToday, getAsteroidsByDateRange } = require('./../services/nasaNEO')
 const { parseNEOdata, insertAsteroidsIntoDB } = require('./../models/updateDB')
-const { getAsteroidsByMonth } = require('./../models/asteroidLookup')
+const { getAsteroidsByMonth, getAllAsteroids } = require('./../models/asteroidLookup')
 
 const sendRes = (req, res) => res.json(res.data);
 router.route('/test')
