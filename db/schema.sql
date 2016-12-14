@@ -12,5 +12,6 @@ CREATE TABLE asteroids (
   nasa_jpl_url VARCHAR(255),
   orbiting_body VARCHAR(20),
   close_approach_date DATE,
-  absolute_magnitude SMALLINT
+  absolute_magnitude SMALLINT,
+  nav_val VARCHAR(50)
 );

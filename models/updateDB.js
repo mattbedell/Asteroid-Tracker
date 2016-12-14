@@ -4,11 +4,15 @@ function parseNEOdata(req, res, next) {
   let data = res.data.near_earth_objects;
   // Get all asteroids closer than 50 lunar distance
   let distFilter;
-  for(day in data) {
-    distFilter = data[day].filter((asteroid) => {
-      return asteroid.close_approach_data[0].miss_distance.lunar < 50;
-    })
-  }
+  if(res.isHistorical) {
+    for(day in data) {
+      distFilter = data[day].filter((asteroid) => {
+        return asteroid.close_approach_data[0].miss_distance.lunar < 50;
+      })
+    }
+  } else {
+      distFilter = res.data
+    }
   // assemble array of asteroid object to be inserted into database
   let formattedData = distFilter.map((asteroid) => {
     let formattedAsteroid = {
@@ -24,10 +28,46 @@ function parseNEOdata(req, res, next) {
       close_approach_date: asteroid.close_approach_data[0].close_approach_date,
       absolute_magnitude: asteroid.absolute_magnitude_h
     };
+    if(res.isToday) {
+      formattedAsteroid.nav_val = 'today'
+    } else {
+      let navParse = asteroid.close_approach_data[0].close_approach_date.split('-')[1]
+      console.log(navParse);
+      switch(navParse) {
+        case '12':
+        formattedAsteroid.nav_val = 'December'
+        break;
+        case '11':
+        formattedAsteroid.nav_val = 'November'
+        break;
+        case '10':
+        formattedAsteroid.nav_val = 'October'
+        break;
+        case '09':
+        formattedAsteroid.nav_val = 'September'
+        break;
+        case '08':
+        formattedAsteroid.nav_val = 'August'
+        break;
+        case '07':
+        formattedAsteroid.nav_val = 'July'
+        break;
+        case '06':
+        formattedAsteroid.nav_val = 'June'
+        break;
+        default:
+        formattedAsteroid.nav_val = navParse
+      }
+    }
     //console.log(formattedAsteroid);
     return formattedAsteroid;
   })
-  res.data = formattedData;
+  console.log(res.dataBundle);
+  if(res.dataBundle) {
+    res.allAsteroids = [...res.dataBundle, ...formattedData];
+  } else {
+    res.data = formattedData
+  }
   next()
 }
 function insertAsteroidsIntoDB(req, res, next) {
@@ -36,9 +76,9 @@ function insertAsteroidsIntoDB(req, res, next) {
   res.data.map((asteroid) => {
     //console.log(res.data[0]);
     db.none(`INSERT INTO asteroids (name, neo_reference_id, estimated_diameter_max, is_potentially_hazardous_asteroid,
-                                    miles_per_hour, miss_distance_lunar, miss_distance_miles, nasa_jpl_url, orbiting_body, close_approach_date, absolute_magnitude)
+                                    miles_per_hour, miss_distance_lunar, miss_distance_miles, nasa_jpl_url, orbiting_body, close_approach_date, absolute_magnitude, nav_val)
             VALUES($/name/, $/neo_reference_id/, $/estimated_diameter_max/, $/is_potentially_hazardous_asteroid/,
-            $/miles_per_hour/, $/miss_distance_lunar/, $/miss_distance_miles/, $/nasa_jpl_url/, $/orbiting_body/, $/close_approach_date/, $/absolute_magnitude/);`, asteroid)
+            $/miles_per_hour/, $/miss_distance_lunar/, $/miss_distance_miles/, $/nasa_jpl_url/, $/orbiting_body/, $/close_approach_date/, $/absolute_magnitude/, $/nav_val/);`, asteroid)
     .then(() => {
       next()
     })

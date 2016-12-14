@@ -16,7 +16,8 @@ function getAsteroidsByMonth(req, res, next) {
 function getAllAsteroids(req, res, next) {
   db.many(`SELECT * FROM asteroids;`)
   .then((data) => {
-    res.data = data
+    res.dataBundle = data
+    next()
   })
   .catch((err) => {
     console.log(`---> Error in models -> asteroidLookup -> getAllAsteroids(): ${err}`);

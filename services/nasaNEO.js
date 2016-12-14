@@ -7,6 +7,8 @@ function getAToday(req, res, next) {
   .then((data) => {
     const aKeys = Object.keys(data.near_earth_objects)
     res.data = data.near_earth_objects[aKeys[0]];
+    res.isToday = true;
+    res.isHistorical = false;
     next()
   })
   .catch((err) => {
@@ -19,6 +21,7 @@ function getAsteroidsByDateRange(req, res, next) {
   fetch(NASA_URI)
   .then((r) => r.json())
   .then((data) => {
+    res.isHistorical = true;
     res.data = data;
     next();
   })
