@@ -2,9 +2,19 @@
   width: 100vw;
   display: flex;
   justify-content: space-around;
-  background-color: rgb(227,227,227);
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(219,219,219,1) 100%);
 }
 .header {
-
+  font-weight: bold;
   width: 30%;
+  padding-bottom: 5px;
+}
+.listContainer {
+  height: 42vh;
+  overflow-y: scroll;
+}
+.aList {
+  height: 50vh;
+  background-color: black;
 }

@@ -1,7 +1,15 @@
 .navBar{
   display: flex;
   justify-content: flex-start;
+  background: linear-gradient(to bottom, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
 }
 .tab {
-  margin: 0 10px 0 10px;
+  padding: 5px 12px 5px 12px;
+  cursor: pointer;
+}
+.tab:hover {
+  background: linear-gradient(to bottom, rgba(248,80,50,1) 0%, rgba(241,111,92,1) 50%, rgba(246,41,12,1) 51%, rgba(240,47,23,1) 71%, rgba(231,56,39,1) 100%);
+}
+.selected {
+  background: linear-gradient(to bottom, rgba(248,80,50,1) 0%, rgba(241,111,92,1) 50%, rgba(246,41,12,1) 51%, rgba(240,47,23,1) 71%, rgba(231,56,39,1) 100%);
 }

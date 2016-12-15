@@ -1,5 +1,12 @@
 import React from 'react';
 import './NavBar.css';
+const isSelected = (props, tab) => {
+  if(tab === props.navSelect) {
+    return ' selected'
+  } else {
+    return ''
+  }
+}
 const generateTabs = (props) => {
   let uniqueTabs = {};
   props.asteroidList.forEach((asteroid) => {
@@ -8,7 +15,7 @@ const generateTabs = (props) => {
   let tabs = Object.keys(uniqueTabs);
   return(
     tabs.map((tab, i) =>
-    <div className='tab' key={`${tab}${i}`} onClick={() => props.handleNavClick(tab)}>{tab}</div>
+    <div className={`tab${isSelected(props, tab)}`} key={`${tab}${i}`} onClick={() => props.handleNavClick(tab)}>{tab}</div>
   )
   )
 }

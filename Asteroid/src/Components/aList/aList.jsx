@@ -13,6 +13,7 @@ const generateList = (props) => {
       asteroid={asteroid}
       handleAsteroidClick={props.handleAsteroidClick}
       distanceScale={props.distanceScale}
+      selected={props.selected}
     />
 )
 )
@@ -23,6 +24,7 @@ const aList = props => (
   <div className="aList">
     <div className="navBar">
       <NavBar
+        navSelect={props.navSelect}
         asteroidList={props.asteroidList}
         handleNavClick={props.handleNavClick}
       />
@@ -30,9 +32,11 @@ const aList = props => (
     <div className="listHeaders">
       <div className="header"><p>Name</p></div>
       <div className="header"><p>Size(mi)</p></div>
-      <div className="header"><p>Distance</p></div>
+      <div className="header"><p>Distance(mi)</p></div>
     </div>
-    {generateList(props)}
+    <div className="listContainer">
+      {generateList(props)}
+    </div>
   </div>
 );
 

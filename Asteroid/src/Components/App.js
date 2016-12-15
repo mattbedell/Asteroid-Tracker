@@ -142,6 +142,7 @@ class App extends Component {
         />
         <AList
           navSelect={this.state.navSelect}
+          selected={this.state.selected}
           asteroidList={this.state.asteroids}
           distanceScale={this.state.distanceScale}
           handleNavClick={(tab) => this.handleNavClick(tab)}
