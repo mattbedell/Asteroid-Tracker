@@ -29,3 +29,4 @@ Distances and Earth/Moon sizes are to scale, asteroid sizes are 100 times larger
 * Experimentation with smarter React renderering, having the data determine which UI components render
 * Admin panel for database management
 * More info on Asteroid overlay
+* Change scaling to avoid Javascript floating point weirdness
