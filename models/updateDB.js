@@ -55,6 +55,21 @@ function parseNEOdata(req, res, next) {
         case '06':
         formattedAsteroid.nav_val = 'June'
         break;
+        case '05':
+        formattedAsteroid.nav_val = 'May'
+        break;
+        case '04':
+        formattedAsteroid.nav_val = 'April'
+        break;
+        case '03':
+        formattedAsteroid.nav_val = 'March'
+        break;
+        case '02':
+        formattedAsteroid.nav_val = 'February'
+        break;
+        case '01':
+        formattedAsteroid.nav_val = 'January'
+        break;
         default:
         formattedAsteroid.nav_val = navParse
       }
