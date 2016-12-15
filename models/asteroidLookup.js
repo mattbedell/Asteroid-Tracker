@@ -1,5 +1,5 @@
 const db = require('./../lib/dbConnect.js')
-
+// lookup asteroids in database by month
 function getAsteroidsByMonth(req, res, next) {
   console.log(req.params.month);
   db.many(`SELECT * FROM asteroids WHERE
@@ -14,6 +14,7 @@ function getAsteroidsByMonth(req, res, next) {
     })
 }
 function getAllAsteroids(req, res, next) {
+  //get all asteroids in the database, save to response object to be parsed later
   db.many(`SELECT * FROM asteroids;`)
   .then((data) => {
     res.dataBundle = data

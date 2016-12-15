@@ -6,6 +6,7 @@ class AsteroidDisplay extends Component {
     super()
     this.verticalOffset = this.generateVerticalOffset(50)
   }
+  // vertically offset asteroids by a random number to display them better
   generateVerticalOffset(offsetRange) {
     let verticalOffset = Math.floor(Math.random() * offsetRange);
     if(Math.floor(Math.random() * 2)) {
@@ -14,6 +15,7 @@ class AsteroidDisplay extends Component {
       return verticalOffset * -1
     }
   }
+  // alter asteroid position and size based on the scale factor, generate object html properties to apply to asteroid element
   alterAsteroid() {
   const asteroidSize = this.props.asteroid.estimated_diameter_max;
   const asteroidDistance = this.props.asteroid.miss_distance_miles;
@@ -24,6 +26,7 @@ class AsteroidDisplay extends Component {
     top: this.verticalOffset
   }
 }
+// generate object of css properties to apply to info display
 updateDisplay() {
   const asteroidDistance = this.props.asteroid.miss_distance_miles;
   return {
@@ -31,6 +34,7 @@ updateDisplay() {
     top: -100 + this.verticalOffset
   }
 }
+// generate info overlay box
 generateOverlay() {
   let hazard = `${this.props.asteroid.is_potentially_hazardous_asteroid}`
   if(this.props.selected === this.props.asteroid.name) {
@@ -50,6 +54,7 @@ generateOverlay() {
   }
 }
 render() {
+  // render asteroid with overlay
   return(
     <div className="AsteroidDisplay">
       <img src={AsteroidImg} alt="asteroid" style={this.alterAsteroid()}></img>

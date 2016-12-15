@@ -1,5 +1,6 @@
 import React from 'react';
 import './todayItem.css';
+// return css class if list item is selected
 const isSelected = (props) => {
   if(props.asteroid.name === props.selected) {
     return ' selected'

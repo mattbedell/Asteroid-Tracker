@@ -11,6 +11,7 @@ import ZoomImg from "./../../../public/assets/zoomIn.png"
 class SolarDisplay extends Component {
   constructor(props) {
     super()
+    // distance and sizes of solar objects in miles
     this.earthDiameter = 8000
     this.moonDiameter = 2200
     this.marsDiameter = 4212
@@ -20,6 +21,7 @@ class SolarDisplay extends Component {
     this.moonCenter = 0;
   }
   // ------------------- SCALING ---------------------
+  // alter earth distance and size based on scale factor, return object of css properties to be applied to earth element
   earthUpdate() {
       let earthSize = this.earthDiameter * this.props.sizeScale
       this.earthCenter = this.earthDiameter/2 * this.props.sizeScale
@@ -29,6 +31,7 @@ class SolarDisplay extends Component {
       left: this.earthCenter * -1
     }
   }
+  // returns object of css properties that detrmines moon size and distanced based of scale factor
   moonUpdate() {
     this.moonCenter = this.moonDiameter/2 * this.props.sizeScale * -1
     let moonSize = this.moonDiameter * this.props.sizeScale
@@ -39,6 +42,8 @@ class SolarDisplay extends Component {
       left: this.moonCenter
     }
   }
+}
+// returns object of css properties that detrmines mars size and distanced based of scale factor
   marsUpdate() {
     this.marsCenter = this.marsDiameter/2 * this.props.sizeScale * -1
     let marsSize = this.marsDiameter * this.props.sizeScale
@@ -50,6 +55,7 @@ class SolarDisplay extends Component {
     }
   }
   // ------------------- SCALING ---------------------
+  // render asteroids based on selected date catagory
   generateAsteroids() {
     let asteroidSelect = this.props.asteroidList.filter((asteroid) => {
       return asteroid.nav_val === this.props.navSelect
@@ -66,6 +72,7 @@ class SolarDisplay extends Component {
   )
 )
   }
+  // calculate the number of scaled miles at window halfway point
   calcMiles() {
     let halfMark = window.innerWidth/2;
     let miles = Math.floor(halfMark / this.props.distanceScale)

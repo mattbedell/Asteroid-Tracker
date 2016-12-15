@@ -3,10 +3,12 @@ import './aList.css';
 import TodayItem from './../todayItem/todayItem'
 import NavBar from './../NavBar/NavBar'
 const generateList = (props) => {
+  // get all asteroids that match user selected date catagory
   let asteroidSelect = props.asteroidList.filter((asteroid)  => {
     return asteroid.nav_val === props.navSelect
   })
   return(
+    // render asteroids that match va criteria
   asteroidSelect.map((asteroid, i) =>
     <TodayItem
       key={`todayItem${i}`}

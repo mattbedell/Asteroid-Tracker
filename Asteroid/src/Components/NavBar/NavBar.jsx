@@ -1,5 +1,6 @@
 import React from 'react';
 import './NavBar.css';
+// return css class if tab is selected
 const isSelected = (props, tab) => {
   if(tab === props.navSelect) {
     return ' selected'
@@ -7,6 +8,7 @@ const isSelected = (props, tab) => {
     return ''
   }
 }
+// generate a new nav tab for each unique date catagory
 const generateTabs = (props) => {
   let uniqueTabs = {};
   props.asteroidList.forEach((asteroid) => {
