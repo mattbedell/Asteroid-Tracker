@@ -12,7 +12,6 @@ class App extends Component {
     this.resetScale = .02;
     this.state = {
       distanceScale: .02,
-      today: [],
       asteroids: [],
       navSelect: ''
     }
@@ -32,6 +31,12 @@ class App extends Component {
         asteroids,
         navSelect: 'today'
       })
+    })
+  }
+  handleNavClick(navSelect) {
+    console.log(navSelect);
+    this.setState({
+      navSelect
     })
   }
   handleAsteroidClick(asteroidDist, selected) {
@@ -105,7 +110,6 @@ class App extends Component {
   handleZoomInClick() {
     this.zoomDone = true;
     const animateZoomOut = () => {
-      console.log(Math.round(this.state.distanceScale * 1000)/ 1000);
       if(Math.round(this.state.distanceScale * 1000) / 1000 < this.resetScale) {
         this.setState({
           distanceScale: this.state.distanceScale + .00005
@@ -123,7 +127,6 @@ class App extends Component {
     }, 70)
   }
   componentDidMount() {
-    this.getToday()
     this.getAllAsteroids()
   }
   render() {
@@ -141,6 +144,7 @@ class App extends Component {
           navSelect={this.state.navSelect}
           asteroidList={this.state.asteroids}
           distanceScale={this.state.distanceScale}
+          handleNavClick={(tab) => this.handleNavClick(tab)}
           handleAsteroidClick={(asteroidDist, selected) => this.handleAsteroidClick(asteroidDist, selected)}
         />
       </div>

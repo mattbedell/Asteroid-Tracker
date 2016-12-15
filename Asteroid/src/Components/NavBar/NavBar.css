@@ -1,0 +1,7 @@
+.navBar{
+  display: flex;
+  justify-content: flex-start;
+}
+.tab {
+  margin: 0 10px 0 10px;
+}

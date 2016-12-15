@@ -1,6 +1,7 @@
 import React from 'react';
 import './aList.css';
 import TodayItem from './../todayItem/todayItem'
+import NavBar from './../NavBar/NavBar'
 const generateList = (props) => {
   let asteroidSelect = props.asteroidList.filter((asteroid)  => {
     return asteroid.nav_val === props.navSelect
@@ -20,7 +21,12 @@ const generateList = (props) => {
 
 const aList = props => (
   <div className="aList">
-    <div className="navBar"></div>
+    <div className="navBar">
+      <NavBar
+        asteroidList={props.asteroidList}
+        handleNavClick={props.handleNavClick}
+      />
+    </div>
     <div className="listHeaders">
       <div className="header"><p>Name</p></div>
       <div className="header"><p>Size(mi)</p></div>
