@@ -50,7 +50,6 @@ class SolarDisplay extends Component {
     }
   }
   // ------------------- SCALING ---------------------
-
   generateAsteroids() {
     let asteroidSelect = this.props.asteroidList.filter((asteroid) => {
       return asteroid.nav_val === this.props.navSelect

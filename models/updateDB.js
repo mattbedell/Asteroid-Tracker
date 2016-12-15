@@ -29,7 +29,7 @@ function parseNEOdata(req, res, next) {
       absolute_magnitude: asteroid.absolute_magnitude_h
     };
     if(res.isToday) {
-      formattedAsteroid.nav_val = 'today'
+      formattedAsteroid.nav_val = 'Today'
     } else {
       let navParse = asteroid.close_approach_data[0].close_approach_date.split('-')[1]
       console.log(navParse);

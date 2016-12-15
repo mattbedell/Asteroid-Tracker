@@ -1,4 +1,6 @@
-
+.AsteroidDisplay {
+  position: absolute;
+}
 .overlay {
   position: absolute;
   height: 100px;

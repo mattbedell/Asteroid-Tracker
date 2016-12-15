@@ -29,7 +29,7 @@ class App extends Component {
     .then((asteroids) => {
       this.setState({
         asteroids,
-        navSelect: 'today'
+        navSelect: 'Today'
       })
     })
   }
