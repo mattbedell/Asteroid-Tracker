@@ -8,9 +8,10 @@
   },
   "dependencies": {
     "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "pixi.js": "~4.0.0",
-    "react-pixi": "^0.9.4"
+    "react-dom": "^15.4.1"
+  },
+  "engines": {
+    "node": "6.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
