@@ -3,8 +3,8 @@ import './AsteroidDisplay.css';
 import AsteroidImg from "./../../../public/assets/Asteroid.png"
 
 function alterAsteroid(props) {
-  const asteroidSize = props.asteroid.estimated_diameter.miles.estimated_diameter_max;
-  const asteroidDistance = props.asteroid.close_approach_data[0].miss_distance.miles;
+  const asteroidSize = props.asteroid.estimated_diameter_max;
+  const asteroidDistance = props.asteroid.miss_distance_miles;
   return {
     width: asteroidSize * 100,
     height: asteroidSize * 100,
@@ -12,7 +12,7 @@ function alterAsteroid(props) {
   }
 }
 function updateDisplay(props) {
-  const asteroidDistance = props.asteroid.close_approach_data[0].miss_distance.miles;
+  const asteroidDistance = props.asteroid.miss_distance_miles;
   return {
     left: asteroidDistance * props.distanceScale - (120/2),
     top: 95
@@ -24,8 +24,8 @@ function generateOverlay(props) {
     return (
       <div className="overlay" style={updateDisplay(props)}>
         <div className="infoDisplay">
-        <p>Velocity: <span>{Math.floor(props.asteroid.close_approach_data[0].relative_velocity.miles_per_hour)} mph </span></p>
-        <p>Distance: <span>{Math.floor(props.asteroid.close_approach_data[0].miss_distance.lunar)} LD</span></p>
+        <p>Velocity: <span>{Math.floor(props.asteroid.miles_per_hour)} mph </span></p>
+        <p>Distance: <span>{Math.floor(props.asteroid.miss_distance_lunar)} LD</span></p>
         <p>Hazard: <span>{hazard}</span></p>
         </div>
         <div className="lineContainer">

@@ -52,8 +52,11 @@ class SolarDisplay extends Component {
   // ------------------- SCALING ---------------------
 
   generateAsteroids() {
+    let asteroidSelect = this.props.asteroidList.filter((asteroid) => {
+      return asteroid.nav_val === this.props.navSelect
+    })
     return(
-    this.props.data.map((asteroid, i) =>
+    asteroidSelect.map((asteroid, i) =>
     <AsteroidDisplay
       key={`asteroid${i}`}
       asteroid={asteroid}

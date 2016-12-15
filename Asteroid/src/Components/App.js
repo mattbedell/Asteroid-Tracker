@@ -12,7 +12,9 @@ class App extends Component {
     this.resetScale = .02;
     this.state = {
       distanceScale: .02,
-      today: []
+      today: [],
+      asteroids: [],
+      navSelect: ''
     }
   }
   getToday() {
@@ -20,6 +22,15 @@ class App extends Component {
     .then((data) => {
       this.setState({
         today: data
+      })
+    })
+  }
+  getAllAsteroids() {
+    ajaxAdapter.getAllAsteroids()
+    .then((asteroids) => {
+      this.setState({
+        asteroids,
+        navSelect: 'today'
       })
     })
   }
@@ -113,19 +124,22 @@ class App extends Component {
   }
   componentDidMount() {
     this.getToday()
+    this.getAllAsteroids()
   }
   render() {
     return (
       <div className="bodyContainer">
         <SolarDisplay
+          navSelect={this.state.navSelect}
+          asteroidList={this.state.asteroids}
           sizeScale={this.state.distanceScale}
           distanceScale={this.state.distanceScale}
-          data={this.state.today}
           selected={this.state.selected}
           handleZoomInClick={() => this.handleZoomInClick()}
         />
         <AList
-          data={this.state.today}
+          navSelect={this.state.navSelect}
+          asteroidList={this.state.asteroids}
           distanceScale={this.state.distanceScale}
           handleAsteroidClick={(asteroidDist, selected) => this.handleAsteroidClick(asteroidDist, selected)}
         />
