@@ -18,3 +18,14 @@ Distances and Earth/Moon sizes are to scale, asteroid sizes are 100 times larger
 #### Initial Wireframes
 ![alt text](https://github.com/mattBedell/Asteroid-Tracker/blob/master/assets/wireframe.jpg?raw=true
  "Wireframe")
+
+### Challenges
+* Calculating orbits based off NASA's data proved more difficult than anticipated, pivoted to showing relative distances of asteroids instead.
+* Scaling gets progressively faster at large distances, stopping asteroids at center of screen was a challenge
+* Scaling speeds and the FPS upper limits of the browser results in slow animations when the scale is larger.
+
+### Planned Features
+* Twitter panic button that posts asteroid information to the user's profile
+* Experimentation with smarter React renderering, having the data determine which UI components render
+* Admin panel for database management
+* More info on Asteroid overlay
