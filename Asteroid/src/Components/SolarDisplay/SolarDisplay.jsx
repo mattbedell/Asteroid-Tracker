@@ -42,6 +42,12 @@ class SolarDisplay extends Component {
       left: this.moonCenter
     }
   }
+  // moonLabelUpdate() {
+  //   let leftOffset = this.moonCenter;
+  //   return {
+  //     left: this.moonCenter
+  //   }
+  // }
 // returns object of css properties that detrmines mars size and distanced based of scale factor
   marsUpdate() {
     this.marsCenter = this.marsDiameter/2 * this.props.sizeScale * -1

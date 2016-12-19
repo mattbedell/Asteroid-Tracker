@@ -9,9 +9,9 @@ class App extends Component {
     super()
     this.zoomDone = false;
     this.timeoutId = 0;
-    this.resetScale = .02;
+    this.resetScale = .005;
     this.state = {
-      distanceScale: .02,
+      distanceScale: .005,
       asteroids: [],
       navSelect: ''
     }
